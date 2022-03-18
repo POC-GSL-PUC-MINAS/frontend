@@ -19,9 +19,9 @@ WildRydes.map = WildRydes.map || {};
       $.ajax({
         method: 'GET',
         url: _config.api.invokeUrl + '/api/v1/fornecedores',
-        headers: {
-            Authorization: authToken
-        },
+        // headers: {
+        //     Authorization: authToken
+        // },
         contentType: 'application/json',
         success: completeRequest,
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
