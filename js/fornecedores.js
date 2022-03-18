@@ -19,6 +19,7 @@ WildRydes.map = WildRydes.map || {};
       $.ajax({
         method: 'GET',
         url: _config.api.invokeUrl + '/api/v1/fornecedores',
+        crossDomain: true,
         // headers: {
         //     Authorization: authToken
         // },
