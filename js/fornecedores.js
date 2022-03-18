@@ -1,18 +1,17 @@
-/*global WildRydes _config*/
+/*global PocGslFrontend _config*/
 
-var WildRydes = window.WildRydes || {};
-WildRydes.map = WildRydes.map || {};
+var PocGslFrontend = window.PocGslFrontend || {};
 
 (function fornecedoresScopeWrapper($) {
     var authToken;
-    WildRydes.authToken.then(function setAuthToken(token) {
+    PocGslFrontend.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
         } else {
-            window.location.href = '/signin.html';
+            //window.location.href = '/signin.html';
         }
     }).catch(function handleTokenError(error) {
-        window.location.href = '/signin.html';
+        //window.location.href = '/signin.html';
     });
     function listarFornecedores() {
       $.ajax({
@@ -76,6 +75,10 @@ WildRydes.map = WildRydes.map || {};
     $(function onDocReady() {
       // listarFornecedoresMock();
       listarFornecedores();
+      $("#btnLogout").on("click", function() {
+        PocGslFrontend.signOut();
+      })
       $("#tblfornecedores").DataTable();
+
     });
 }(jQuery));
