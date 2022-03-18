@@ -30,6 +30,7 @@ var WildRydes = window.WildRydes || {};
     };
 
     WildRydes.authToken = new Promise(function fetchCurrentAuthToken(resolve, reject) {
+        console.log("=== função authToken")
         var cognitoUser = userPool.getCurrentUser();
 
         if (cognitoUser) {
@@ -39,6 +40,7 @@ var WildRydes = window.WildRydes || {};
                 } else if (!session.isValid()) {
                     resolve(null);
                 } else {
+                    console.log("")
                     resolve(session.getIdToken().getJwtToken());
                 }
             });
