@@ -3,10 +3,16 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function veiculosScopeWrapper($) {
-  var authToken = obterToken();
-  if (authToken == null) {
-    window.location.href = '/signin.html'
-  }
+  var authToken;
+  PocGslFrontend.authToken.then(function setAuthToken(token) {   
+    if (token) {
+      authToken = token;
+    } else {
+      window.location.href = '/login.html'
+    }
+  }).catch(function handleTokenError(error) {
+    window.location.href = '/login.html'
+  });
 
   $(function onDocReady() {
     barraSuperior("#barraSuperior", PocGslFrontend.cognito.entityRole);

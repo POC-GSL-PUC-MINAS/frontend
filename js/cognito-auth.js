@@ -4,7 +4,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
 PocGslFrontend.cognito = PocGslFrontend.cognito || {};
 
 (function scopeWrapper($) {
-    var signinUrl = '/signin.html';
+    var signinUrl = '/login.html';
 
     var poolData = {
         UserPoolId: _config.cognito.userPoolId,

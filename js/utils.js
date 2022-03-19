@@ -2,21 +2,6 @@
 
 var PocGslFrontend = window.PocGslFrontend || {};
 
-function obterToken() {
-  console.log("function obterToken")
-  PocGslFrontend.authToken.then(function setAuthToken(token) {
-    console.log("token");
-    console.log(token);
-    if (token) {
-      return token;
-    } else {
-      return null;
-    }
-  }).catch(function handleTokenError(error) {
-    return null;
-  });
-}
-
 function menuLateral(container, pagina) {
   const dom = `
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
