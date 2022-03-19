@@ -4,6 +4,11 @@ var PocGslFrontend = window.PocGslFrontend || {};
 
 (function fornecedoresScopeWrapper($) {
   var authToken = obterToken();
+
+  console.log("fornecedoresScopeWrapper");
+  console.log("authToken");
+  console.log(authToken);
+
   if (authToken == null) {
     window.location.href = '/signin.html'
   }
