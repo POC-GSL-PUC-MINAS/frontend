@@ -3,7 +3,10 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 function obterToken() {
+  console.log("function obterToken")
   PocGslFrontend.authToken.then(function setAuthToken(token) {
+    console.log("token");
+    console.log(token);
     if (token) {
       return token;
     } else {
