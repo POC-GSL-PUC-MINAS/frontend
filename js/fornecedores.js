@@ -3,20 +3,11 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function fornecedoresScopeWrapper($) {
-
-    console.log("Perfil");
-    console.log(PocGslFrontend.perfil);
-
-    var authToken;
-    PocGslFrontend.authToken.then(function setAuthToken(token) {
-        if (token) {
-            authToken = token;
-        } else {
-            window.location.href = '/signin.html';
-        }
-    }).catch(function handleTokenError(error) {
-        window.location.href = '/signin.html';
-    });
+  var authToken = obterToken();
+  if (authToken == null) {
+    window.location.href = '/signin.html'
+  }
+  
     function listarFornecedores() {
       $.ajax({
         method: 'GET',
@@ -34,7 +25,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
             console.error('Response: ', jqXHR.responseText);
             alert('An error occured when requesting:\n' + jqXHR.responseText);
         }
-    });
+      });
     }
     function listarFornecedoresMock() {
       const obj = {
@@ -77,28 +68,9 @@ var PocGslFrontend = window.PocGslFrontend || {};
       $("#tblfornecedores tbody").html(tbody);    
     }
     $(function onDocReady() {
-      if (PocGslFrontend.perfil != "admin") {
-        $(".menus").hide();
-        if (PocGslFrontend.perfil == "cliente") {
-          $("#nomeUsuario").html("Cliente");
-          $("#menu-clientes").show();
-          $("#menu-pedidos").show();
-        } else if (PocGslFrontend.perfil == "fornecedor") {
-          $("#nomeUsuario").html("Fornecedor");
-          $("#menu-fornecedores").show();
-          $("#menu-mercadorias").show();
-        } else if (PocGslFrontend.perfil == "transportadora") {
-          $("#nomeUsuario").html("Transportadora");
-          $("#menu-transportadoras").show();
-          $("#menu-veiculos").show();
-        } else if (PocGslFrontend.perfil == "deposito") {
-          $("#nomeUsuario").html("Depósito");
-          $("#menu-depositos").show();
-          $("#menu-mercadorias").show();
-        }
-      } else {
-        $("#nomeUsuario").html("Admin");
-      }
+      barraSuperior("#barraSuperior", PocGslFrontend.cognito.entityRole);
+      menuLateral("#accordionSidebar", "fornecedores");
+      exibirMenus(PocGslFrontend.cognito.entityRole);
       
       // listarFornecedoresMock();
       listarFornecedores();

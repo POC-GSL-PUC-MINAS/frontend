@@ -1,8 +1,7 @@
 /*global PocGslFrontend _config AmazonCognitoIdentity AWSCognito*/
 
 var PocGslFrontend = window.PocGslFrontend || {};
-PocGslFrontend.perfil = PocGslFrontend.perfil || "anonimo";
-PocGslFrontend.grupoCognito = PocGslFrontend.grupoCognito || "";
+PocGslFrontend.cognito = PocGslFrontend.cognito || {};
 
 (function scopeWrapper($) {
     var signinUrl = '/signin.html';
@@ -44,26 +43,22 @@ PocGslFrontend.grupoCognito = PocGslFrontend.grupoCognito || "";
         console.log(cognitoUser);
 
         if (cognitoUser) {
-            cognitoUser.getSession(function sessionCallback(err, session) {
-                if (err) {
-                    reject(err);
-                } else if (!session.isValid()) {
-                    resolve(null);
-                } else {
-                    const token = session.getIdToken();                   
-                    const jwtToken = token.getJwtToken();
-                   
-                    const sessionIdInfo = jwt_decode(jwtToken);
-                    PocGslFrontend.grupoCognito = sessionIdInfo['cognito:groups'][0];
-
-                    console.log("sessionIdInfo");
-                    console.log(sessionIdInfo)                  
-                  
-                    resolve(jwtToken);
-                }
-            });
+          cognitoUser.getSession(function sessionCallback(err, session) {
+            if (err) {
+              reject(err);
+            } else if (!session.isValid()) {
+              resolve(null);
+            } else {
+              const token = session.getIdToken();
+              const jwtToken = token.getJwtToken();
+              const sessionIdInfo = jwt_decode(jwtToken);
+              PocGslFrontend.cognito.entityId = sessionIdInfo['custom:entityId'];
+              PocGslFrontend.cognito.entityRole = sessionIdInfo['custom:entityRole'];                 
+              resolve(jwtToken);
+            }
+          });
         } else {
-            resolve(null);
+          resolve(null);
         }
 
         PocGslFrontend.perfil = "fornecedor";
