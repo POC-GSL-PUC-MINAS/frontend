@@ -38,7 +38,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     });
   }
 
-  function renderizarTabela() {
+  function renderizarTabela(itens) {
     let tbody = ""
     itens.forEach(function(item){
       tbody += `<tr>

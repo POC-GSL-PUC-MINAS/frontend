@@ -2,6 +2,7 @@
 
 var PocGslFrontend = window.PocGslFrontend || {};
 PocGslFrontend.perfil = PocGslFrontend.perfil || "anonimo";
+PocGslFrontend.grupoCognito = PocGslFrontend.grupoCognito || "";
 
 (function scopeWrapper($) {
     var signinUrl = '/signin.html';
@@ -49,18 +50,15 @@ PocGslFrontend.perfil = PocGslFrontend.perfil || "anonimo";
                 } else if (!session.isValid()) {
                     resolve(null);
                 } else {
-                    const token = session.getIdToken();
-                    console.log("token");
-                    console.log(token);
+                    const token = session.getIdToken();                   
                     const jwtToken = token.getJwtToken();
-                    console.log("jwtToken");
-                    console.log(jwtToken);
-
+                   
                     const sessionIdInfo = jwt_decode(jwtToken);
-                    console.log("sessionIdInfo['cognito:groups']");
-                    console.log(sessionIdInfo['cognito:groups']);
+                    PocGslFrontend.grupoCognito = sessionIdInfo['cognito:groups'][0];
 
-                    // resolve(session.getIdToken().getJwtToken());
+                    console.log("sessionIdInfo");
+                    console.log(sessionIdInfo)                  
+                  
                     resolve(jwtToken);
                 }
             });
