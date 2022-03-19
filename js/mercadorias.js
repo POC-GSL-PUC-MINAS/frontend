@@ -17,10 +17,11 @@ var PocGslFrontend = window.PocGslFrontend || {};
   function listarMercadorias(fornecedorId) {
     let url;
     if (fornecedorId !== null) {
-      url = "/api/v1/mercadorias";
-    } else {
       url = `/api/v1/fornecedores/${fornecedorId}/mercadorias`;
+    } else {
+      url = "/api/v1/mercadorias";
     }
+
     $.ajax({
       method: 'GET',
       url: _config.api.invokeUrl + url,
@@ -83,6 +84,9 @@ var PocGslFrontend = window.PocGslFrontend || {};
     } else {
       $("#nomeUsuario").html("Admin");
     }
+
+    console.log("fornecedorId");
+    console.log(fornecedorId);
 
     listarMercadorias(fornecedorId);
     $("#btnLogout").on("click", function() {
