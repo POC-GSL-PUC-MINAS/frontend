@@ -56,7 +56,7 @@ PocGslFrontend.perfil = PocGslFrontend.perfil || "anonimo";
                     console.log("jwtToken");
                     console.log(jwtToken);
 
-                    const sessionIdInfo = jwtDecode(jwtToken);
+                    const sessionIdInfo = jwt_decode(jwtToken);
                     console.log("sessionIdInfo['cognito:groups']");
                     console.log(sessionIdInfo['cognito:groups']);
 
