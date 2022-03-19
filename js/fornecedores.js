@@ -3,6 +3,10 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function fornecedoresScopeWrapper($) {
+
+    console.log("Perfil");
+    console.log(PocGslFrontend.perfil);
+
     var authToken;
     PocGslFrontend.authToken.then(function setAuthToken(token) {
         if (token) {
@@ -73,6 +77,29 @@ var PocGslFrontend = window.PocGslFrontend || {};
       $("#tblfornecedores tbody").html(tbody);    
     }
     $(function onDocReady() {
+      if (PocGslFrontend.perfil != "admin") {
+        $(".menus").hide();
+        if (PocGslFrontend.perfil == "cliente") {
+          $("#nomeUsuario").html("Cliente");
+          $("#menu-clientes").show();
+          $("#menu-pedidos").show();
+        } else if (PocGslFrontend.perfil == "fornecedor") {
+          $("#nomeUsuario").html("Fornecedor");
+          $("#menu-fornecedores").show();
+          $("#menu-mercadorias").show();
+        } else if (PocGslFrontend.perfil == "transportadora") {
+          $("#nomeUsuario").html("Transportadora");
+          $("#menu-transportadoras").show();
+          $("#menu-veiculos").show();
+        } else if (PocGslFrontend.perfil == "deposito") {
+          $("#nomeUsuario").html("Depósito");
+          $("#menu-depositos").show();
+          $("#menu-mercadorias").show();
+        }
+      } else {
+        $("#nomeUsuario").html("Admin");
+      }
+      
       // listarFornecedoresMock();
       listarFornecedores();
       $("#btnLogout").on("click", function() {

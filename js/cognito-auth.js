@@ -1,6 +1,7 @@
 /*global PocGslFrontend _config AmazonCognitoIdentity AWSCognito*/
 
 var PocGslFrontend = window.PocGslFrontend || {};
+PocGslFrontend.perfil = PocGslFrontend.perfil || "anonimo";
 
 (function scopeWrapper($) {
     var signinUrl = '/signin.html';
@@ -54,6 +55,11 @@ var PocGslFrontend = window.PocGslFrontend || {};
                     const jwtToken = token.getJwtToken();
                     console.log("jwtToken");
                     console.log(jwtToken);
+
+                    const sessionIdInfo = jwtDecode(jwtToken);
+                    console.log("sessionIdInfo['cognito:groups']");
+                    console.log(sessionIdInfo['cognito:groups']);
+
                     // resolve(session.getIdToken().getJwtToken());
                     resolve(jwtToken);
                 }
@@ -61,6 +67,10 @@ var PocGslFrontend = window.PocGslFrontend || {};
         } else {
             resolve(null);
         }
+
+        PocGslFrontend.perfil = "fornecedor";
+        // PocGslFrontend.customId = "6d8e002a-6f6c-487f-8f61-0b675ed37c13";
+        PocGslFrontend.customId = "2c50941d-9f43-46fc-a968-73768a15a7de";
     });
 
 

@@ -29,8 +29,6 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-location-arrow"></i>
@@ -49,43 +47,43 @@
             <!-- Divider -->
             <hr class="sidebar-divider mt-3">  
             
-            <li class="nav-item">
+            <li id="menu-clientes" class="menus nav-item">
                 <a class="nav-link" href="clientes.html">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Clientes</span></a>
             </li>
 
-            <li class="nav-item">
+            <li id="menu-pedidos" class="menus nav-item">
                 <a class="nav-link" href="pedidos.html">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>Pedidos</span></a>
             </li>
 
-            <li class="nav-item">              
+            <li id="menu-depositos" class="menus nav-item">              
               <a class="nav-link" href="depositos.html">
                 <i class="fas fa-fw fa-building"></i>
                 <span>Depósitos</span></a>          
            </li>
                         
-            <li class="nav-item active">
+            <li id="menu-fornecedores" class="menus nav-item active">
                 <a class="nav-link" href="fornecedores.html">
                     <i class="fas fa-fw fa-industry"></i>
                     <span>Fornecedores</span></a>
             </li>
 
-            <li class="nav-item">
+            <li id="menu-mercadorias" class="menus nav-item">
                 <a class="nav-link" href="mercadorias.html">
                     <i class="fas fa-fw fa-barcode"></i>
                     <span>Mercadorias</span></a>
             </li>
 
-            <li class="nav-item">
+            <li id="menu-transportadoras" class="menus nav-item">
                 <a class="nav-link" href="transportadoras.html">
                     <i class="fas fa-fw fa-building"></i>
                     <span>Transportadoras</span></a>
             </li>
 
-            <li class="nav-item">
+            <li id="menu-veiculos" class="menus nav-item">
                 <a class="nav-link" href="veiculos.html">
                     <i class="fas fa-fw fa-truck"></i>
                     <span>Veículos</span></a>
@@ -217,7 +215,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuário</span>
+                                <span id="nomeUsuario" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
