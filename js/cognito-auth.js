@@ -126,7 +126,7 @@ PocGslFrontend.cognito = PocGslFrontend.cognito || {};
       $('#signinForm').submit(handleSignin);
       $('#registrationForm').submit(handleRegister);
       $('#verifyForm').submit(handleVerify);
-    );
+    });
 
     function handleSignin(event) {
       var email = $('#emailInputSignin').val();
