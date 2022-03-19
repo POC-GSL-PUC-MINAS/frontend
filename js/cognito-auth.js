@@ -5,6 +5,9 @@ var PocGslFrontend = window.PocGslFrontend || {};
 (function scopeWrapper($) {
     var signinUrl = '/signin.html';
 
+    console.log("_config.cognito");
+    console.log(_config.cognito);
+
     var poolData = {
         UserPoolId: _config.cognito.userPoolId,
         ClientId: _config.cognito.userPoolClientId
@@ -21,6 +24,9 @@ var PocGslFrontend = window.PocGslFrontend || {};
 
     userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
+    console.log("userPool");
+    console.log(userPool);
+
     if (typeof AWSCognito !== 'undefined') {
         AWSCognito.config.region = _config.cognito.region;
     }
@@ -29,9 +35,11 @@ var PocGslFrontend = window.PocGslFrontend || {};
         userPool.getCurrentUser().signOut();
     };
 
-    PocGslFrontend.authToken = new Promise(function fetchCurrentAuthToken(resolve, reject) {
-        console.log("=== função authToken")
+    PocGslFrontend.authToken = new Promise(function fetchCurrentAuthToken(resolve, reject) {   
         var cognitoUser = userPool.getCurrentUser();
+
+        console.log("cognitoUser");
+        console.log(cognitoUser);
 
         if (cognitoUser) {
             cognitoUser.getSession(function sessionCallback(err, session) {
@@ -40,8 +48,14 @@ var PocGslFrontend = window.PocGslFrontend || {};
                 } else if (!session.isValid()) {
                     resolve(null);
                 } else {
-                    console.log("")
-                    resolve(session.getIdToken().getJwtToken());
+                    const token = session.getIdToken();
+                    console.log("token");
+                    console.log(token);
+                    const jwtToken = token.getJwtToken();
+                    console.log("jwtToken");
+                    console.log(jwtToken);
+                    // resolve(session.getIdToken().getJwtToken());
+                    resolve(jwtToken);
                 }
             });
         } else {
@@ -73,12 +87,23 @@ var PocGslFrontend = window.PocGslFrontend || {};
     }
 
     function signin(email, password, onSuccess, onFailure) {
+        console.log("function signin");
+        console.log("email: " + email);
+        console.log("password: " + password);
+
         var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
             Username: toUsername(email),
             Password: password
         });
 
+        console.log("authenticationDetails");
+        console.log(authenticationDetails);
+
         var cognitoUser = createCognitoUser(email);
+
+        console.log("cognitoUser");
+        console.log(cognitoUser);
+
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: onSuccess,
             onFailure: onFailure

@@ -8,10 +8,10 @@ var PocGslFrontend = window.PocGslFrontend || {};
         if (token) {
             authToken = token;
         } else {
-            //window.location.href = '/signin.html';
+            window.location.href = '/signin.html';
         }
     }).catch(function handleTokenError(error) {
-        //window.location.href = '/signin.html';
+        window.location.href = '/signin.html';
     });
     function listarFornecedores() {
       $.ajax({
