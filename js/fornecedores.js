@@ -10,7 +10,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
   console.log(authToken);
 
   if (authToken == null) {
-    window.location.href = '/signin.html'
+    // window.location.href = '/signin.html'
   }
   
     function listarFornecedores() {
