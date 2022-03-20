@@ -16,7 +16,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     });
     
     var entityRole = PocGslFrontend.cognito.entityRole;
-    redirecionarNaoAutorizados("depositos", entityRole);
+    redirecionarNaoAutorizados("fornecedores", entityRole);
     
     barraSuperior("#barraSuperior", entityRole);
     menuLateral("#accordionSidebar", "fornecedores");

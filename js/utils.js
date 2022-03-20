@@ -215,6 +215,7 @@ function barraSuperior(container, perfil) {
   $(container).html(dom);
   $("#logout-btn").on("click", function() {
     PocGslFrontend.signOut();
+    window.location.href = '/login.html'
   })
 }
 
@@ -242,7 +243,7 @@ function redirecionarNaoAutorizados(pagina, perfil) {
       ( (["clientes","pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||
       ( (["fornecedores","mercadorias"].includes(pagina)) && !(["colaborador","fornecedor"].includes(perfil)) ) ||
       ( (["transportadoras","veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
-      ( (["depositos"].includes(pagina)) && !(["colaborador","deposito"].includes(perfil)) )
+      ( (["depositos","mercadorias"].includes(pagina)) && !(["colaborador","deposito"].includes(perfil)) )
     ) {
       window.location.href = '/index.html'
     }
