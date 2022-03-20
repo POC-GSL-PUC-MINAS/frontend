@@ -63,32 +63,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     barraSuperior("#barraSuperior", PocGslFrontend.cognito.entityRole);
     menuLateral("#accordionSidebar", "mercadorias");    
     exibirMenus(PocGslFrontend.cognito.entityRole);    
-
-    let fornecedorId = null;
-    if (PocGslFrontend.perfil != "admin") {
-      $(".menus").hide();
-      if (PocGslFrontend.perfil == "cliente") {
-        $("#nomeUsuario").html("Cliente");
-        $("#menu-clientes").show();
-        $("#menu-pedidos").show();
-      } else if (PocGslFrontend.perfil == "fornecedor") {
-        fornecedorId = PocGslFrontend.customId;
-        $("#nomeUsuario").html("Fornecedor");
-        $("#menu-fornecedores").show();
-        $("#menu-mercadorias").show();
-      } else if (PocGslFrontend.perfil == "transportadora") {
-        $("#nomeUsuario").html("Transportadora");
-        $("#menu-transportadoras").show();
-        $("#menu-veiculos").show();
-      } else if (PocGslFrontend.perfil == "deposito") {
-        $("#nomeUsuario").html("Depósito");
-        $("#menu-depositos").show();
-        $("#menu-mercadorias").show();
-      }
-    } else {
-      $("#nomeUsuario").html("Admin");
-    }
-
+    
     listarMercadorias(fornecedorId);
     $("#btnLogout").on("click", function() {
       PocGslFrontend.signOut();

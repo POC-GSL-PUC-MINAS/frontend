@@ -236,3 +236,14 @@ function exibirMenus(perfil) {
     }
   }
 }
+
+function redirecionarNaoAutorizados(pagina, perfil) {
+  if (
+      ( (["clientes","pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||
+      ( (["fornecedores","mercadorias"].includes(pagina)) && !(["colaborador","fornecedor"].includes(perfil)) ) ||
+      ( (["transportadoras","veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
+      ( (["depositos"].includes(pagina)) && !(["colaborador","deposito"].includes(perfil)) )
+    ) {
+      window.location.href = '/login.html'
+    }
+}
