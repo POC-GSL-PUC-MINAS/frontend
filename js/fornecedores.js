@@ -3,17 +3,33 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function fornecedoresScopeWrapper($) {
-  var authToken;
-  PocGslFrontend.authToken.then(function setAuthToken(token) {   
-    if (token) {
-      authToken = token;
-    } else {
+  $(function onDocReady() {
+    var authToken;
+    PocGslFrontend.authToken.then(function setAuthToken(token) {   
+      if (token) {
+        authToken = token;
+      } else {
+        window.location.href = '/login.html'
+      }
+    }).catch(function handleTokenError(error) {
       window.location.href = '/login.html'
-    }
-  }).catch(function handleTokenError(error) {
-    window.location.href = '/login.html'
-  });
+    });
     
+    var entityRole = PocGslFrontend.cognito.entityRole;
+    redirecionarNaoAutorizados("depositos", entityRole);
+    
+    barraSuperior("#barraSuperior", entityRole);
+    menuLateral("#accordionSidebar", "fornecedores");
+    exibirMenus(entityRole);
+    
+    listarFornecedores();
+    $("#btnLogout").on("click", function() {
+      PocGslFrontend.signOut();
+    })
+    $("#tblfornecedores").DataTable();
+
+  });
+
   function listarFornecedores() {
     $.ajax({
       method: 'GET',
@@ -33,31 +49,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
       }
     });
   }
-  function listarFornecedoresMock() {
-    const obj = {
-      "Items": [
-          {
-              "id": "98205cd8-bb7d-470a-a6c7-9f631a7245fc",
-              "nomeFantasia": "Fornecedor Teste para apagar"
-          },
-          {
-              "cnpj": "47.422.763/0001-94",
-              "id": "6d8e002a-6f6c-487f-8f61-0b675ed37c13",
-              "nomeFantasia": "Fornecedor 02",
-              "status": "ATIVO"
-          },
-          {
-              "cnpj": "51.578.370/0001-41",
-              "id": "2c50941d-9f43-46fc-a968-73768a15a7de",
-              "nomeFantasia": "Fornecedor 01",
-              "status": "ATIVO"
-          }
-      ],
-      "Count": 4,
-      "ScannedCount": 4
-    }
-    renderizarTabela(obj.Items)
-  }
+
   function renderizarTabela(itens) {
     let tbody = ""
     itens.forEach(function(item){
@@ -72,18 +64,5 @@ var PocGslFrontend = window.PocGslFrontend || {};
       </tr>`;       
     });
     $("#tblfornecedores tbody").html(tbody);    
-  }
-  $(function onDocReady() {
-    barraSuperior("#barraSuperior", PocGslFrontend.cognito.entityRole);
-    menuLateral("#accordionSidebar", "fornecedores");
-    exibirMenus(PocGslFrontend.cognito.entityRole);
-    
-    // listarFornecedoresMock();
-    listarFornecedores();
-    $("#btnLogout").on("click", function() {
-      PocGslFrontend.signOut();
-    })
-    $("#tblfornecedores").DataTable();
-
-  });
+  }  
 }(jQuery));

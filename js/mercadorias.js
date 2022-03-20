@@ -3,15 +3,31 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function mercadoriasScopeWrapper($) {
-  var authToken;
-  PocGslFrontend.authToken.then(function setAuthToken(token) {   
-    if (token) {
-      authToken = token;
-    } else {
+  $(function onDocReady() {
+
+    var authToken;
+    PocGslFrontend.authToken.then(function setAuthToken(token) {   
+      if (token) {
+        authToken = token;
+      } else {
+        window.location.href = '/login.html'
+      }
+    }).catch(function handleTokenError(error) {
       window.location.href = '/login.html'
-    }
-  }).catch(function handleTokenError(error) {
-    window.location.href = '/login.html'
+    });
+  
+    var entityRole = PocGslFrontend.cognito.entityRole;
+    redirecionarNaoAutorizados("mercadorias", entityRole);
+  
+    barraSuperior("#barraSuperior", entityRole);
+    menuLateral("#accordionSidebar", "mercadorias");    
+    exibirMenus(entityRole);    
+    
+    listarMercadorias(fornecedorId);
+    $("#btnLogout").on("click", function() {
+      PocGslFrontend.signOut();
+    })
+    $("#tblMercadorias").DataTable();
   });
 
   function listarMercadorias(fornecedorId) {
@@ -58,16 +74,4 @@ var PocGslFrontend = window.PocGslFrontend || {};
     });
     $("#tblMercadorias tbody").html(tbody);
   }
-
-  $(function onDocReady() {
-    barraSuperior("#barraSuperior", PocGslFrontend.cognito.entityRole);
-    menuLateral("#accordionSidebar", "mercadorias");    
-    exibirMenus(PocGslFrontend.cognito.entityRole);    
-    
-    listarMercadorias(fornecedorId);
-    $("#btnLogout").on("click", function() {
-      PocGslFrontend.signOut();
-    })
-    $("#tblMercadorias").DataTable();
-  });
 }(jQuery));

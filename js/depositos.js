@@ -3,20 +3,23 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function depositosScopeWrapper($) {
-  var authToken;
-  PocGslFrontend.authToken.then(function setAuthToken(token) {   
-    if (token) {
-      authToken = token;
-    } else {
-      window.location.href = '/login.html'
-    }
-  }).catch(function handleTokenError(error) {
-    window.location.href = '/login.html'
-  });
-
   $(function onDocReady() {
-    barraSuperior("#barraSuperior", PocGslFrontend.cognito.entityRole);
+    var authToken;
+    PocGslFrontend.authToken.then(function setAuthToken(token) {   
+      if (token) {
+        authToken = token;
+      } else {
+        window.location.href = '/login.html'
+      }
+    }).catch(function handleTokenError(error) {
+      window.location.href = '/login.html'
+    });
+
+    var entityRole = PocGslFrontend.cognito.entityRole;
+    redirecionarNaoAutorizados("depositos", entityRole);
+  
+    barraSuperior("#barraSuperior", entityRole);
     menuLateral("#accordionSidebar", "depositos");
-    exibirMenus(PocGslFrontend.cognito.entityRole);
+    exibirMenus(entityRole);
   });
 }(jQuery));

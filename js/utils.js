@@ -244,6 +244,6 @@ function redirecionarNaoAutorizados(pagina, perfil) {
       ( (["transportadoras","veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
       ( (["depositos"].includes(pagina)) && !(["colaborador","deposito"].includes(perfil)) )
     ) {
-      window.location.href = '/login.html'
+      window.location.href = '/index.html'
     }
 }
