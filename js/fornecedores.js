@@ -14,7 +14,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     }).catch(function handleTokenError(error) {
       window.location.href = '/login.html'
     });
-    
+        
     var entityRole = PocGslFrontend.cognito.entityRole;
     redirecionarNaoAutorizados("fornecedores", entityRole);
     
@@ -23,11 +23,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     exibirMenus(entityRole);
     
     listarFornecedores();
-    $("#btnLogout").on("click", function() {
-      PocGslFrontend.signOut();
-    })
-    $("#tblfornecedores").DataTable();
-
+    $("#tblfornecedores").DataTable();    
   });
 
   function listarFornecedores() {
@@ -43,9 +39,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
         renderizarTabela(obj.Items)
       },
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
-          console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
-          console.error('Response: ', jqXHR.responseText);
-          alert('An error occured when requesting:\n' + jqXHR.responseText);
+        console.error('Response: ', jqXHR.responseText);   
       }
     });
   }
@@ -54,6 +48,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     let tbody = ""
     itens.forEach(function(item){
       tbody += `<tr>
+        <td>${item.id}</td>
         <td>${item.cnpj}</td>
         <td>${item.nomeFantasia}</td>
         <td>${item.status}</td>

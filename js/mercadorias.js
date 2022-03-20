@@ -23,13 +23,10 @@ var PocGslFrontend = window.PocGslFrontend || {};
     menuLateral("#accordionSidebar", "mercadorias");    
     exibirMenus(entityRole);    
     
-    listarMercadorias(fornecedorId);
-    $("#btnLogout").on("click", function() {
-      PocGslFrontend.signOut();
-    })
+    var entityId = PocGslFrontend.cognito.entityId;
+    listarMercadorias(entityId);    
     $("#tblMercadorias").DataTable();
   });
-
   function listarMercadorias(fornecedorId) {
     let url;
     if (fornecedorId !== null) {
@@ -54,11 +51,11 @@ var PocGslFrontend = window.PocGslFrontend || {};
       }
     });
   }
-
   function renderizarTabela(itens) {
     let tbody = ""
     itens.forEach(function(item){
       tbody += `<tr>
+        <td>${item.id}</td>
         <td>${item.fornecedorId}</td>
         <td>${item.descricao}</td>
         <td>${item.codigoNCM}</td>
@@ -72,6 +69,6 @@ var PocGslFrontend = window.PocGslFrontend || {};
         </td>
       </tr>`;       
     });
-    $("#tblMercadorias tbody").html(tbody);
+    $("#tblmercadorias tbody").html(tbody);
   }
 }(jQuery));
