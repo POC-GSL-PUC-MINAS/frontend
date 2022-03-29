@@ -20,7 +20,14 @@ function menuLateral(container, pagina) {
 </div>
 
 <!-- Divider -->
-<hr class="sidebar-divider mt-3">  
+<hr class="sidebar-divider mt-3">
+
+<li id="menu-meus-dados" class="menus nav-item ${ pagina == "pessoajuridica" ? "active" : "" }">
+  <a class="nav-link" href="pessoajuridica.html">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Meus Dados</span></a>
+</li>
+
 
 <li id="menu-clientes" class="menus nav-item ${ pagina == "clientes" ? "active" : "" }">
   <a class="nav-link" href="clientes.html">
@@ -223,30 +230,31 @@ function exibirMenus(perfil) {
   if (perfil != "colaborador") {
     $(".menus").hide();
     if (perfil == "cliente") {     
-      $("#menu-clientes").show();
+      $("#menu-meus-dados").show();
       $("#menu-pedidos").show();
     } else if (perfil == "fornecedor") {   
-      $("#menu-fornecedores").show();
+      $("#menu-meus-dados").show();
       $("#menu-mercadorias").show();
     } else if (perfil == "transportadora") {
-      $("#menu-transportadoras").show();
+      $("#menu-meus-dados").show();
       $("#menu-veiculos").show();
     } else if (perfil == "deposito") {
-      $("#menu-depositos").show();
+      $("#menu-meus-dados").show();
       $("#menu-mercadorias").show();
     }
+  } else {
+    $("#menu-meus-dados").hide();
   }
 }
 
 function redirecionarNaoAutorizados(pagina, perfil) {  
   if (
-      ( (["clientes","pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||
-      ( (["fornecedores"].includes(pagina)) && !(["colaborador","fornecedor"].includes(perfil)) ) ||
-      ( (["transportadoras","veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
-      ( (["depositos"].includes(pagina)) && !(["colaborador","deposito"].includes(perfil)) ) ||
+      ( (["clientes","depositos","fornecedores","transportadoras"].includes(pagina)) && !(["colaborador"].includes(perfil)) ) ||
+      ( (["pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||      
+      ( (["veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
       ( (["mercadorias"].includes(pagina)) && !(["colaborador","deposito","fornecedor"].includes(perfil)) )
     ) {
-      window.location.href = '/index.html'
+      window.location.href = perfil == 'colaborador' ? '/index.html' : '/pessoajuridica.html'
     }
 }
 
