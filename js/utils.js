@@ -238,7 +238,12 @@ function exibirMenus(perfil) {
   }
 }
 
-function redirecionarNaoAutorizados(pagina, perfil) { 
+function redirecionarNaoAutorizados(pagina, perfil) {
+    console.log("redirecionarNaoAutorizados")
+    console.log("pagina")
+    console.log(pagina)
+    console.log("perfil")
+    console.log(perfil)
   if (
       ( (["clientes","pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||
       ( (["fornecedores","mercadorias"].includes(pagina)) && !(["colaborador","fornecedor"].includes(perfil)) ) ||
