@@ -69,10 +69,10 @@ function menuLateral(container, pagina) {
 
 <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">
-  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  <button class="rounded-circle border-0" id="sidebarToggle" onclick="toggleSidebar()"></button>
 </div>
   `;
-  $(container).html(dom);
+  $(container).html(dom);  
 }
 
 function barraSuperior(container, perfil) {
@@ -238,18 +238,21 @@ function exibirMenus(perfil) {
   }
 }
 
-function redirecionarNaoAutorizados(pagina, perfil) {
-    console.log("redirecionarNaoAutorizados")
-    console.log("pagina")
-    console.log(pagina)
-    console.log("perfil")
-    console.log(perfil)
+function redirecionarNaoAutorizados(pagina, perfil) { 
   if (
       ( (["clientes","pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||
       ( (["fornecedores","mercadorias"].includes(pagina)) && !(["colaborador","fornecedor"].includes(perfil)) ) ||
       ( (["transportadoras","veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
       ( (["depositos","mercadorias"].includes(pagina)) && !(["colaborador","deposito"].includes(perfil)) )
     ) {
-      // window.location.href = '/index.html'
+      window.location.href = '/index.html'
     }
+}
+
+function toggleSidebar() {   
+  $("body").toggleClass("sidebar-toggled");
+  $(".sidebar").toggleClass("toggled");
+  if ($(".sidebar").hasClass("toggled")) {
+    $('.sidebar .collapse').collapse('hide');
+  };
 }
