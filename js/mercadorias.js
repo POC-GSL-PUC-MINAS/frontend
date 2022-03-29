@@ -40,7 +40,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
       url: _config.api.invokeUrl + url,
       crossDomain: true,
       headers: {
-          Authorization: authToken
+          Authorization: PocGslFrontend.authToken
       },
       contentType: 'application/json',
       success: function (obj) {
