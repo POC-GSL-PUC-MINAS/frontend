@@ -4,7 +4,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
 
 (function pessoaJuridicaScopeWrapper($) {
   $(function onDocReady() {
-    /*var authToken;
+    var authToken;
     PocGslFrontend.authToken.then(function setAuthToken(token) {   
       if (token) {
         authToken = token;
@@ -15,16 +15,17 @@ var PocGslFrontend = window.PocGslFrontend || {};
       window.location.href = '/login.html'
     });
         
-    var entityRole = PocGslFrontend.cognito.entityRole;
-    redirecionarNaoAutorizados("fornecedores", entityRole);
+    const entityRole = PocGslFrontend.cognito.entityRole;
+    const pagina = obterPaginaPorPapel(entityRole);
+
+    redirecionarNaoAutorizados(pagina, entityRole);
     
     barraSuperior("#barraSuperior", entityRole);
-    menuLateral("#accordionSidebar", "fornecedores");
-    exibirMenus(entityRole);*/
+    menuLateral("#accordionSidebar", pagina);
+    exibirMenus(entityRole);
     
-    //const dados = obterDadosPJ(PocGslFrontend.cognito.entityRole,
-    //                           PocGslFrontend.cognito.entityId);    
-    const dados = obterDadosPJ('fornecedores','6d8e002a-6f6c-487f-8f61-0b675ed37c13')
+    const dados = obterDadosPJ(PocGslFrontend.cognito.entityRole,
+                              PocGslFrontend.cognito.entityId);    
     preencherForm(dados);   
   });
 
@@ -40,29 +41,15 @@ var PocGslFrontend = window.PocGslFrontend || {};
 
   function obterDadosPJ(papel, entidadeId) {
     let dados = {};
-    let entidadeRota;
-    switch (papel) {
-      case 'cliente':
-        entidadeRota = 'clientes';
-        break;
-      case 'deposito':
-        entidadeRota = 'depositos';
-        break;
-      case 'fornecedor':
-        entidadeRota = 'fornecedores';
-        break;
-      case 'transportadora':
-        entidadeRota = 'transportadoras';
-        break;   
-    }
-           
+    const entidadeRota = obterPaginaPorPapel(papel);
+               
     $.ajax({
       method: 'GET',
       url: _config.api.invokeUrl + `/api/v1/${entidadeRota}/${entidadeId}`,
-      // crossDomain: true,
-      // headers: {
-      //     Authorization: authToken
-      // },
+      crossDomain: true,
+      headers: {
+          Authorization: PocGslFrontend.authToken
+      },
       contentType: 'application/json',
       success: function (obj) {
         dados = obj;
@@ -72,5 +59,23 @@ var PocGslFrontend = window.PocGslFrontend || {};
       }
     });
     return dados;
-  }   
+  }
+  function obterPaginaPorPapel(papel) {
+    let pagina = '';
+    switch (papel) {
+      case 'cliente':
+        pagina = 'clientes';
+        break;
+      case 'deposito':
+        pagina = 'depositos';
+        break;
+      case 'fornecedor':
+        pagina = 'fornecedores';
+        break;
+      case 'transportadora':
+        pagina = 'transportadoras';
+        break;   
+    }
+    return pagina;
+  }
 }(jQuery));
