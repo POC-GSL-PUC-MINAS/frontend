@@ -24,7 +24,7 @@ function menuLateral(container, pagina) {
 
 <li id="menu-meus-dados" class="menus nav-item ${ pagina == "pessoajuridica" ? "active" : "" }">
   <a class="nav-link" href="pessoajuridica.html">
-      <i class="fas fa-fw fa-users"></i>
+      <i class="fas fa-fw fa-address-card"></i>
       <span>Meus Dados</span></a>
 </li>
 

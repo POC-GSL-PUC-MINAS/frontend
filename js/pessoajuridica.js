@@ -61,8 +61,8 @@ var PocGslFrontend = window.PocGslFrontend || {};
       contentType: 'application/json',
       success: function (obj) {
         console.log("success");
-        console.log(obj);
-        preencherForm(obj);
+        console.log(obj.Item);
+        preencherForm(obj.Item);
       },
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
         console.error('Response: ', jqXHR.responseText);   
