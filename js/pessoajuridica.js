@@ -18,7 +18,9 @@ var PocGslFrontend = window.PocGslFrontend || {};
     const entityRole = PocGslFrontend.cognito.entityRole;
     const pagina = obterPaginaPorPapel(entityRole);
 
-    redirecionarNaoAutorizados(pagina, entityRole);
+    if (!window.location.href.includes('pessoajuridica')) {
+      redirecionarNaoAutorizados(pagina, entityRole);
+    }
     
     barraSuperior("#barraSuperior", entityRole);
     menuLateral("#accordionSidebar", pagina);
