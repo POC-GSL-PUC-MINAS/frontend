@@ -26,9 +26,8 @@ var PocGslFrontend = window.PocGslFrontend || {};
     menuLateral("#accordionSidebar", pagina);
     exibirMenus(entityRole);
     
-    const dados = obterDadosPJ(PocGslFrontend.cognito.entityRole,
-                              PocGslFrontend.cognito.entityId);    
-    preencherForm(dados);   
+    obterDadosPJ(PocGslFrontend.cognito.entityRole,
+                 PocGslFrontend.cognito.entityId);
   });
 
   function preencherForm(dados) {
@@ -54,7 +53,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
       },
       contentType: 'application/json',
       success: function (obj) {
-        dados = obj;
+        preencherForm(obj);
       },
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
         console.error('Response: ', jqXHR.responseText);   
