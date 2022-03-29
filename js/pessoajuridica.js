@@ -41,18 +41,27 @@ var PocGslFrontend = window.PocGslFrontend || {};
   }
 
   function obterDadosPJ(papel, entidadeId) {
+    console.log("obterDadosPJ");
+    console.log(papel);
+    console.log(entidadeId);
+
     let dados = {};
     const entidadeRota = obterPaginaPorPapel(papel);
+    const url = _config.api.invokeUrl + `/api/v1/${entidadeRota}/${entidadeId}`;
+
+    console.log(url);
                
     $.ajax({
       method: 'GET',
-      url: _config.api.invokeUrl + `/api/v1/${entidadeRota}/${entidadeId}`,
+      url: url,
       crossDomain: true,
       headers: {
           Authorization: PocGslFrontend.authToken
       },
       contentType: 'application/json',
       success: function (obj) {
+        console.log("success");
+        console.log(obj);
         preencherForm(obj);
       },
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
