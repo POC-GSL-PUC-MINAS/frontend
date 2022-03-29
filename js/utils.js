@@ -239,12 +239,17 @@ function exibirMenus(perfil) {
 }
 
 function redirecionarNaoAutorizados(pagina, perfil) {
+    console.log("redirecionarNaoAutorizados")
+    console.log("pagina")
+    console.log(pagina)
+    console.log("perfil")
+    console.log(perfil)
   if (
       ( (["clientes","pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||
       ( (["fornecedores","mercadorias"].includes(pagina)) && !(["colaborador","fornecedor"].includes(perfil)) ) ||
       ( (["transportadoras","veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
       ( (["depositos","mercadorias"].includes(pagina)) && !(["colaborador","deposito"].includes(perfil)) )
     ) {
-      window.location.href = '/index.html'
+      // window.location.href = '/index.html'
     }
 }
