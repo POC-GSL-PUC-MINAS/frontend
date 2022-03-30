@@ -73,12 +73,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   
   directionsService
     .route({
-      origin: {
-        query: { lat: -23.66693, lng: -46.46510 }
-      },
-      destination: {
-        query: coords,
-      },
+      origin: { lat: -23.66693, lng: -46.46510 },    
+      destination: coords,
       travelMode: google.maps.TravelMode.DRIVING,
     })
     .then((response) => {
