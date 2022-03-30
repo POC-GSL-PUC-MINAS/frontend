@@ -41,6 +41,12 @@ function menuLateral(container, pagina) {
       <span>Pedidos</span></a>
 </li>
 
+<li id="menu-atendimento" class="menus nav-item ${ pagina == "atendimento" ? "active" : "" }">
+  <a class="nav-link" href="clientes.html">
+      <i class="fas fa-fw fa-tasks"></i>
+      <span>Atendimento</span></a>
+</li>
+
 <li id="menu-depositos" class="menus nav-item ${ pagina == "depositos" ? "active" : "" }">              
 <a class="nav-link" href="depositos.html">
   <i class="fas fa-fw fa-building"></i>
@@ -238,6 +244,7 @@ function exibirMenus(perfil) {
     if (perfil == "cliente") {     
       $("#menu-meus-dados").show();
       $("#menu-pedidos").show();
+      $("#menu-atendimento").show();
     } else if (perfil == "fornecedor") {   
       $("#menu-meus-dados").show();
       $("#menu-mercadorias").show();
@@ -257,7 +264,7 @@ function exibirMenus(perfil) {
 function redirecionarNaoAutorizados(pagina, perfil) {  
   if (
       ( (["clientes","depositos","fornecedores","transportadoras"].includes(pagina)) && !(["colaborador"].includes(perfil)) ) ||
-      ( (["pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||      
+      ( (["atendimento","pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||      
       ( (["rotas","veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
       ( (["mercadorias"].includes(pagina)) && !(["colaborador","deposito","fornecedor"].includes(perfil)) )
     ) {
