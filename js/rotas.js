@@ -43,14 +43,13 @@ function initMap() {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
 
-  document.getElementById("start").addEventListener("change", onChangeHandler);
   document.getElementById("end").addEventListener("change", onChangeHandler);
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   const destino = document.getElementById("end").value;
-  let coords = '';
+  let coords = {};
   switch (destino) {
     case 'sandre':
       coords = { lat: -23.65163, lng: -46.53528 };
