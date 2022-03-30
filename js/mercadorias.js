@@ -29,7 +29,9 @@ var PocGslFrontend = window.PocGslFrontend || {};
   //});
   function listarMercadorias(fornecedorId) {
     let url;
-    if (fornecedorId !== null) {
+    if (fornecedorId !== null && 
+        fornecedorId !== undefined && 
+        fornecedorId != "") {
       url = `/api/v1/fornecedores/${fornecedorId}/mercadorias`;
     } else {
       url = "/api/v1/mercadorias";
