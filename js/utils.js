@@ -72,7 +72,7 @@ function menuLateral(container, pagina) {
 </li>
 
 <li id="menu-rotas" class="menus nav-item ${ pagina == "rotas" ? "active" : "" }">
-  <a class="nav-link" href="veiculos.html">
+  <a class="nav-link" href="rotas.html">
       <i class="fas fa-fw fa-map"></i>
       <span>Rotas</span></a>
 </li>
