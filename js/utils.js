@@ -71,6 +71,12 @@ function menuLateral(container, pagina) {
       <span>Veículos</span></a>
 </li>
 
+<li id="menu-rotas" class="menus nav-item ${ pagina == "rotas" ? "active" : "" }">
+  <a class="nav-link" href="veiculos.html">
+      <i class="fas fa-fw fa-map"></i>
+      <span>Rotas</span></a>
+</li>
+
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 
@@ -238,6 +244,7 @@ function exibirMenus(perfil) {
     } else if (perfil == "transportadora") {
       $("#menu-meus-dados").show();
       $("#menu-veiculos").show();
+      $("#menu-rotas").show();
     } else if (perfil == "deposito") {
       $("#menu-meus-dados").show();
       $("#menu-mercadorias").show();
@@ -251,7 +258,7 @@ function redirecionarNaoAutorizados(pagina, perfil) {
   if (
       ( (["clientes","depositos","fornecedores","transportadoras"].includes(pagina)) && !(["colaborador"].includes(perfil)) ) ||
       ( (["pedidos"].includes(pagina)) && !(["colaborador","cliente"].includes(perfil)) ) ||      
-      ( (["veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
+      ( (["rotas","veiculos"].includes(pagina)) && !(["colaborador","transportadora"].includes(perfil)) ) ||
       ( (["mercadorias"].includes(pagina)) && !(["colaborador","deposito","fornecedor"].includes(perfil)) )
     ) {
       window.location.href = perfil == 'colaborador' ? '/index.html' : '/pessoajuridica.html'
