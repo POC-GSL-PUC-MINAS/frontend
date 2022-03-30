@@ -3,7 +3,7 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function mercadoriasScopeWrapper($) {
-  $(function onDocReady() {
+  //$(function onDocReady() {
 
     var authToken;
     PocGslFrontend.authToken.then(function setAuthToken(token) {   
@@ -26,7 +26,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     var entityId = PocGslFrontend.cognito.entityId;
     listarMercadorias(entityId);    
     $("#tblMercadorias").DataTable();
-  });
+  //});
   function listarMercadorias(fornecedorId) {
     let url;
     if (fornecedorId !== null) {

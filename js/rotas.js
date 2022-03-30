@@ -7,9 +7,8 @@
 
 var PocGslFrontend = window.PocGslFrontend || {};
 
-//(function rotasScopeWrapper($) {
-  // $(function onDocReady() {
-    console.log("onDocReady")
+(function rotasScopeWrapper($) {
+  // $(function onDocReady() {  
     var authToken;
     PocGslFrontend.authToken.then(function setAuthToken(token) {   
       if (token) {
@@ -84,4 +83,4 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 }
 
  // });
-//});
+}(jQuery));

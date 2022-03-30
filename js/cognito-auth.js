@@ -73,23 +73,13 @@ PocGslFrontend.cognito = PocGslFrontend.cognito || {};
       );
     }
 
-    function signin(email, password, onSuccess, onFailure) {
-      console.log("function signin");
-      console.log("email: " + email);
-      console.log("password: " + password);
-
+    function signin(email, password, onSuccess, onFailure) {      
       var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
         Username: toUsername(email),
         Password: password
       });
 
-      console.log("authenticationDetails");
-      console.log(authenticationDetails);
-
       var cognitoUser = createCognitoUser(email);
-
-      console.log("cognitoUser");
-      console.log(cognitoUser);
 
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: onSuccess,

@@ -3,7 +3,7 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function fornecedoresScopeWrapper($) {
-  $(function onDocReady() {
+  //$(function onDocReady() {
     var authToken;
     PocGslFrontend.authToken.then(function setAuthToken(token) {   
       if (token) {
@@ -24,7 +24,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     
     listarFornecedores();
     $("#tblfornecedores").DataTable();    
-  });
+  //});
 
   function listarFornecedores() {
     $.ajax({
@@ -32,7 +32,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
       url: _config.api.invokeUrl + '/api/v1/fornecedores',
       crossDomain: true,
       headers: {
-          Authorization: authToken
+          Authorization: PocGslFrontend.authToken
       },
       contentType: 'application/json',
       success: function (obj) {

@@ -3,7 +3,7 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function pessoaJuridicaScopeWrapper($) {
-  $(function onDocReady() {
+  //$(function onDocReady() {
     var authToken;
     PocGslFrontend.authToken.then(function setAuthToken(token) {   
       if (token) {
@@ -28,7 +28,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
     
     obterDadosPJ(PocGslFrontend.cognito.entityRole,
                  PocGslFrontend.cognito.entityId);
-  });
+  //});
 
   function preencherForm(dados) {
     $('#cnpj').val(dados.cnpj);
@@ -41,15 +41,9 @@ var PocGslFrontend = window.PocGslFrontend || {};
   }
 
   function obterDadosPJ(papel, entidadeId) {
-    console.log("obterDadosPJ");
-    console.log(papel);
-    console.log(entidadeId);
-
     let dados = {};
     const entidadeRota = obterPaginaPorPapel(papel);
     const url = _config.api.invokeUrl + `/api/v1/${entidadeRota}/${entidadeId}`;
-
-    console.log(url);
                
     $.ajax({
       method: 'GET',
@@ -59,9 +53,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
           Authorization: PocGslFrontend.authToken
       },
       contentType: 'application/json',
-      success: function (obj) {
-        console.log("success");
-        console.log(obj.Item);
+      success: function (obj) {      
         preencherForm(obj.Item);
       },
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
