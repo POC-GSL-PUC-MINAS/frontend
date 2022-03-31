@@ -3,7 +3,7 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function atendimentoScopeWrapper($) {
-  /*var authToken;
+  var authToken;
   PocGslFrontend.authToken.then(function setAuthToken(token) {   
     if (token) {
       authToken = token;
@@ -19,7 +19,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
   
   barraSuperior("#barraSuperior", entityRole);
   menuLateral("#accordionSidebar", "atendimento");
-  exibirMenus(entityRole); */
+  exibirMenus(entityRole);
 
   $("#btnEnviarSolicitacao").on("click", function () {
     const clienteId = PocGslFrontend.cognito.entityId;
