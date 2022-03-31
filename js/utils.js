@@ -42,7 +42,7 @@ function menuLateral(container, pagina) {
 </li>
 
 <li id="menu-atendimento" class="menus nav-item ${ pagina == "atendimento" ? "active" : "" }">
-  <a class="nav-link" href="clientes.html">
+  <a class="nav-link" href="atendimento.html">
       <i class="fas fa-fw fa-tasks"></i>
       <span>Atendimento</span></a>
 </li>
