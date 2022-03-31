@@ -33,7 +33,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
       contentType: 'application/json',
       data: {
         descricao: $("#descricao").val(),
-        prioridade: $("#prioridade option : selected").val()
+        prioridade: $("#prioridade option:selected").val()
       },
       success: function (obj) {      
         alert("Solicitação enviada com sucesso!")
