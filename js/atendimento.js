@@ -21,8 +21,7 @@ var PocGslFrontend = window.PocGslFrontend || {};
   menuLateral("#accordionSidebar", "atendimento");
   exibirMenus(entityRole); 
 
-  
-  function enviarSolicitacao() {
+  $("#btnEnviarSolicitacao").on("click", function () {
     const clienteId = PocGslFrontend.cognito.entityId;
     $.ajax({
       method: 'POST',
@@ -43,5 +42,5 @@ var PocGslFrontend = window.PocGslFrontend || {};
         console.error('Erro ao enviar solicitação: ', jqXHR.responseText);   
       }
     });
-  }
+  })  
 }(jQuery));
