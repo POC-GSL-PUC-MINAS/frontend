@@ -128,7 +128,7 @@ PocGslFrontend.cognito = PocGslFrontend.cognito || {};
           window.location.href = 'index.html';
         },
         function signinError(err) {
-          alert(err);
+          alert("Usuário e/ou Senha incorretos");
         }
       );
     }
