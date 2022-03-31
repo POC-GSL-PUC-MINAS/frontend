@@ -109,7 +109,8 @@
       dataType: 'json',
       data: data,
       success: function (obj) {      
-        alert("Solicitação enviada com sucesso!")
+        console.log("success")
+        console.log(obj);
       },
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
         console.error('Erro ao enviar solicitação: ', jqXHR.responseText);   
