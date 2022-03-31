@@ -33,7 +33,7 @@
               Atendimento ao Cliente
             </div>
             <div class="card-body">
-              <form role="form">                
+              <form>                
                 <div class="form-group">
                   <label>Descrição</label>
                   <textarea id="descricao" class="form-control"></textarea>                  
@@ -87,7 +87,7 @@
   <script>
     $("#btnEnviarSolicitacao").on("click", function (e) {
       e.preventDefault();
-      
+
     const clienteId = PocGslFrontend.cognito.entityId;
     console.log("clienteId")
     console.log(clienteId)
@@ -116,7 +116,7 @@
       },
       contentType: 'application/json',
       dataType: 'json',
-      data: data,
+      data: JSON.stringify(data),
       success: function (obj) {      
         console.log("success")
         console.log(obj);
