@@ -19,30 +19,5 @@ var PocGslFrontend = window.PocGslFrontend || {};
   
   barraSuperior("#barraSuperior", entityRole);
   menuLateral("#accordionSidebar", "atendimento");
-  exibirMenus(entityRole);
-
-  $("#btnEnviarSolicitacao").on("click", function () {
-    const clienteId = PocGslFrontend.cognito.entityId;
-    const data = {
-      descricao:  $("#descricao").val(),
-      prioridade: $("#prioridade option:selected").val()
-    }
-    $.ajax({
-      method: 'POST',
-      url: _config.api.invokeUrl + `/api/v1/clientes/${clienteId}/solicitacoes`,
-      crossDomain: true,
-      headers: {
-          Authorization: PocGslFrontend.authToken
-      },
-      contentType: 'application/json',
-      dataType: 'json',
-      data: data,
-      success: function (obj) {      
-        alert("Solicitação enviada com sucesso!")
-      },
-      error: function ajaxError(jqXHR, textStatus, errorThrown) {
-        console.error('Erro ao enviar solicitação: ', jqXHR.responseText);   
-      }
-    });
-  })  
+  exibirMenus(entityRole);  
 }(jQuery));

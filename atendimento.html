@@ -84,6 +84,39 @@
   <script src="js/cognito-auth.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/atendimento.js"></script>
+  <script>
+    $("#btnEnviarSolicitacao").on("click", function () {
+    const clienteId = PocGslFrontend.cognito.entityId;
+    console.log("clienteId")
+    console.log(clienteId)
+
+    const data = {
+      descricao:  $("#descricao").val(),
+      prioridade: $("#prioridade option:selected").val()
+    }
+
+    console.log("data");
+    console.log(data);
+
+    $.ajax({
+      method: 'POST',
+      url: _config.api.invokeUrl + `/api/v1/clientes/${clienteId}/solicitacoes`,
+      crossDomain: true,
+      headers: {
+          Authorization: PocGslFrontend.authToken
+      },
+      contentType: 'application/json',
+      dataType: 'json',
+      data: data,
+      success: function (obj) {      
+        alert("Solicitação enviada com sucesso!")
+      },
+      error: function ajaxError(jqXHR, textStatus, errorThrown) {
+        console.error('Erro ao enviar solicitação: ', jqXHR.responseText);   
+      }
+    });
+  })  
+  </script>
 </body>
 
 </html>
