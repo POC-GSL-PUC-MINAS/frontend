@@ -3,7 +3,7 @@
 var PocGslFrontend = window.PocGslFrontend || {};
 
 (function atendimentoScopeWrapper($) {
-  var authToken;
+  /*var authToken;
   PocGslFrontend.authToken.then(function setAuthToken(token) {   
     if (token) {
       authToken = token;
@@ -19,10 +19,14 @@ var PocGslFrontend = window.PocGslFrontend || {};
   
   barraSuperior("#barraSuperior", entityRole);
   menuLateral("#accordionSidebar", "atendimento");
-  exibirMenus(entityRole); 
+  exibirMenus(entityRole); */
 
   $("#btnEnviarSolicitacao").on("click", function () {
     const clienteId = PocGslFrontend.cognito.entityId;
+    const data = {
+      descricao:  $("#descricao").val(),
+      prioridade: $("#prioridade option:selected").val()
+    }
     $.ajax({
       method: 'POST',
       url: _config.api.invokeUrl + `/api/v1/clientes/${clienteId}/solicitacoes`,
@@ -31,10 +35,8 @@ var PocGslFrontend = window.PocGslFrontend || {};
           Authorization: PocGslFrontend.authToken
       },
       contentType: 'application/json',
-      data: {
-        descricao: $("#descricao").val(),
-        prioridade: $("#prioridade option:selected").val()
-      },
+      dataType: 'json',
+      data: data,
       success: function (obj) {      
         alert("Solicitação enviada com sucesso!")
       },
