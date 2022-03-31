@@ -85,7 +85,9 @@
   <script src="js/utils.js"></script>
   <script src="js/atendimento.js"></script>
   <script>
-    $("#btnEnviarSolicitacao").on("click", function () {
+    $("#btnEnviarSolicitacao").on("click", function (e) {
+      e.preventDefault();
+      
     const clienteId = PocGslFrontend.cognito.entityId;
     console.log("clienteId")
     console.log(clienteId)
@@ -98,9 +100,16 @@
     console.log("data");
     console.log(data);
 
+    const url = _config.api.invokeUrl + `/api/v1/clientes/${clienteId}/solicitacoes`;
+    console.log("url");
+    console.log(url);
+
+    console.log("token");
+    console.log(PocGslFrontend.authToken);
+
     $.ajax({
       method: 'POST',
-      url: _config.api.invokeUrl + `/api/v1/clientes/${clienteId}/solicitacoes`,
+      url: url,
       crossDomain: true,
       headers: {
           Authorization: PocGslFrontend.authToken
