@@ -120,9 +120,13 @@
       success: function (obj) {      
         console.log("success")
         console.log(obj);
+        alert("Solicitação enviada com sucesso!")
       },
-      error: function ajaxError(jqXHR, textStatus, errorThrown) {
-        console.error('Erro ao enviar solicitação: ', jqXHR.responseText);   
+      error: function ajaxError(jqXHR, textStatus, errorThrown) {      
+        console.error('Erro ao enviar solicitação: ', jqXHR.responseText);  
+        console.log(jqXHR) 
+        console.log(textStatus) 
+        console.log(errorThrown) 
       }
     });
   })  
